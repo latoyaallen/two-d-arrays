@@ -41,6 +41,7 @@ function orderByColumn(matrix) {
     columnOrder.push(matrix[column][row]);
     column++;
   }
+
   column = 0;
   row = 2;
 
@@ -48,11 +49,44 @@ function orderByColumn(matrix) {
     columnOrder.push(matrix[column][row]);
     column++;
   }
+
   return columnOrder;
+}
+
+function validMoves(board, row, column) {
+  const valid = [];
+  const currentSpace = board[row][column]; // board[1][1];
+  const up = board[row - 1][column];
+  if(up !== -1) {
+    let first = row - 1;
+    let second = column;
+    valid.push([first, second]);
+  }
+  const down = board[row + 1][column];
+  if(down !== -1) {
+    let first = row + 1;
+    let second = column;
+    valid.push([first, second]);
+  }
+  const left = board[row][column - 1];
+  if(left !== -1) {
+    let first = row;;
+    let second = column - 1;
+    valid.push([first, second]);
+  }
+  const right = board[row][column + 1];
+  if(left !== -1) {
+    let first = row;;
+    let second = column + 1;
+    valid.push([first, second]);
+  }
+
+  return valid;
 }
 
 export {
   returnInOrder,
   reverseOrder,
   orderByColumn,
+  validMoves,
 }
