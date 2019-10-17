@@ -55,12 +55,14 @@ function orderByColumn(matrix) {
 
 function validMoves(board, row, column) {
   const valid = [];
-  const currentSpace = board[row][column]; // board[1][1];
-  const up = board[row - 1][column];
-  if(up !== -1) {
-    let first = row - 1;
-    let second = column;
-    valid.push([first, second]);
+  const currentSpace = board[row][column];
+  if(row > 0) {
+    const up = board[row - 1][column];
+    if(up !== -1) {
+      let first = row - 1;
+      let second = column;
+      valid.push([first, second]);
+    }
   }
   const down = board[row + 1][column];
   if(down !== -1) {
@@ -75,13 +77,18 @@ function validMoves(board, row, column) {
     valid.push([first, second]);
   }
   const right = board[row][column + 1];
-  if(left !== -1) {
-    let first = row;;
-    let second = column + 1;
-    valid.push([first, second]);
+  if(right) {
+    if(right !== -1) {
+      let first = row;;
+      let second = column + 1;
+      valid.push([first, second]);
+    }
   }
 
   return valid;
+}
+
+function firstAndLastCoordinates() {
 }
 
 export {
@@ -89,4 +96,5 @@ export {
   reverseOrder,
   orderByColumn,
   validMoves,
+  firstAndLastCoordinates,
 }
